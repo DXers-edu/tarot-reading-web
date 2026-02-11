@@ -1,8 +1,7 @@
 # Next.js + LLM API를 활용한 개발부터 수익화까지
 
-## 🏁 3강 공통 상수 및 리소스 생성
+## 🏁 4강 공통 상수 및 리소스 생성
 **소스코드**: Next.js 소스코드
-**[구글 드라이브 경로](https://drive.google.com/drive/folders/1J_P1OGEVRXRYC7A5iExiUlfG1F8WN2AN?usp=drive_link "Google Drive로 이동")**
 
 ---
 
