@@ -1,8 +1,10 @@
 'use client'
 
 import QuestionBox from '@/components/reading/QuestionBox';
+import SpreadSelector from '@/components/reading/SpreadSelector';
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { classExpression } from '@/lib/common';
+import { SpreadKey } from '@/lib/tarot/types';
 import { ChangeEvent, useMemo, useState } from 'react';
 
 // description: 1: 질문 입력 , 2: 스프레드 선택, 3: 카드 선택, 4: 결과 해석 //
@@ -13,11 +15,16 @@ export default function Reading() {
     const [step, setStep] = useState<Step>(1);
 
     const [question, setQuestion] = useState<string>('');
+    const [selectedSpreadKey, setSelectedKey] = useState<SpreadKey | null>(null);
 
     const onQuestionChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = event.target;
         if (value.length > 200) return;
         setQuestion(value);
+    };
+
+    const onSpreadSelectedHandler = (key: SpreadKey) => {
+        setSelectedKey(key);
     };
 
     const stepLabel = useMemo(() => {
@@ -80,6 +87,7 @@ export default function Reading() {
                     </button>
                 </div>
                 {step === 1 && <QuestionBox question={question} onChange={onQuestionChangeHandler} onNext={onStepClickHandler} />}
+                {step === 2 && <SpreadSelector selectedKey={selectedSpreadKey} onSelect={onSpreadSelectedHandler} onNext={onStepClickHandler} />}
             </CardBody>
         </Card>
     )
