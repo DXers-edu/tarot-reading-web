@@ -2,6 +2,7 @@ import { classExpression } from "@/lib/common";
 import { SPREAD_BY_KEY, SPREADS } from "@/lib/tarot/spreads";
 import { SpreadKey } from "@/lib/tarot/types";
 import { Button } from "../ui/button";
+import SpreadPreview from "./SpreadPreview";
 
 interface Props {
     selectedKey: SpreadKey | null;
@@ -51,7 +52,7 @@ export default function SpreadSelector ({ selectedKey, onSelect, onNext }: Props
                 </div>
             </div>
             <div>
-                {/* TODO: 스프레드 프리뷰 */}
+                <SpreadPreview spread={selectedSpread} />
             </div>
             <div>
                 <Button variant='primary' onClick={() => onNext(3)} disabled={!canNext}>다음: 카드 선택</Button>
