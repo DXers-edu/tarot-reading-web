@@ -1,15 +1,24 @@
 'use client'
 
+import QuestionBox from '@/components/reading/QuestionBox';
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { classExpression } from '@/lib/common';
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 
 // description: 1: 질문 입력 , 2: 스프레드 선택, 3: 카드 선택, 4: 결과 해석 //
 type Step = 1 | 2 | 3 | 4;
 
 export default function Reading() {
 
-    const [step, setStep] = useState<Step>(4);
+    const [step, setStep] = useState<Step>(1);
+
+    const [question, setQuestion] = useState<string>('');
+
+    const onQuestionChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        const { value } = event.target;
+        if (value.length > 200) return;
+        setQuestion(value);
+    };
 
     const stepLabel = useMemo(() => {
         return step === 1 ? '1/4 질문 입력' :
@@ -70,6 +79,7 @@ export default function Reading() {
                         결과 해석
                     </button>
                 </div>
+                {step === 1 && <QuestionBox question={question} onChange={onQuestionChangeHandler} onNext={onStepClickHandler} />}
             </CardBody>
         </Card>
     )
