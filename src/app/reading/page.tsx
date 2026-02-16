@@ -1,10 +1,12 @@
 'use client'
 
+import DeckPicker from '@/components/reading/DeckPicker';
 import QuestionBox from '@/components/reading/QuestionBox';
 import SpreadSelector from '@/components/reading/SpreadSelector';
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { classExpression } from '@/lib/common';
-import { SpreadKey } from '@/lib/tarot/types';
+import { SPREAD_BY_KEY } from '@/lib/tarot/spreads';
+import { SelectedCard, SpreadKey } from '@/lib/tarot/types';
 import { ChangeEvent, useMemo, useState } from 'react';
 
 // description: 1: 질문 입력 , 2: 스프레드 선택, 3: 카드 선택, 4: 결과 해석 //
@@ -16,6 +18,7 @@ export default function Reading() {
 
     const [question, setQuestion] = useState<string>('');
     const [selectedSpreadKey, setSelectedKey] = useState<SpreadKey | null>(null);
+    const [selectedCards, setSelectedCards] = useState<SelectedCard[]>([]);
 
     const onQuestionChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = event.target;
@@ -27,12 +30,20 @@ export default function Reading() {
         setSelectedKey(key);
     };
 
+    const onSelectedCardChangeHandler = (selectedCards: SelectedCard[]) => {
+        setSelectedCards(selectedCards);
+    };
+
     const stepLabel = useMemo(() => {
         return step === 1 ? '1/4 질문 입력' :
             step === 2 ? '2/4 스프레드 선택' :
             step === 3 ? '3/4 카드 선택' :
             '4/4 결과 해석';
     }, [step]);
+
+    const spread = useMemo(() => {
+        return selectedSpreadKey ? SPREAD_BY_KEY.get(selectedSpreadKey) ?? null : null;
+    }, [selectedSpreadKey]);
 
     const onStepClickHandler = (step: Step) => {
         setStep(step);
@@ -88,6 +99,7 @@ export default function Reading() {
                 </div>
                 {step === 1 && <QuestionBox question={question} onChange={onQuestionChangeHandler} onNext={onStepClickHandler} />}
                 {step === 2 && <SpreadSelector selectedKey={selectedSpreadKey} onSelect={onSpreadSelectedHandler} onNext={onStepClickHandler} />}
+                {step === 3 && <DeckPicker spread={spread} question={question} selectedCards={selectedCards} setSelectedCards={onSelectedCardChangeHandler} onNext={onStepClickHandler} />}
             </CardBody>
         </Card>
     )

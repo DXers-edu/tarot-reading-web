@@ -44,3 +44,12 @@ export type Spread = {
 };
 
 export type SpreadKey = 'one-oracle' | 'three-card' | 'choice' | 'hexagram' | 'celtic-cross' | 'horseshoe' | 'horoscope' | 'heart-sonata' | 'calendar';
+
+export type Orientation = '정방향' | '역방향';
+
+export type SelectedCard = {
+    deckIndex: number;
+    card: TarotCard;
+    orientation: Orientation;
+    positionLabel: string;
+};
