@@ -1,6 +1,6 @@
 # Next.js + LLM API를 활용한 개발부터 수익화까지
 
-## 🏁 10강 리딩 페이지 - 카드 선택 컴포넌트 생성
+## 🏁 11강 리딩 페이지 - 스프레드 채움 컴포넌트 생성
 **소스코드**: Next.js 소스코드
 
 ---
@@ -18,6 +18,7 @@
 - tailwindcss 4
 - typescript 5
 - eslint 9
+- lucide-react 0.564.0
 
 ---
 

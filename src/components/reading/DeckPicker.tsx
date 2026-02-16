@@ -4,6 +4,7 @@ import { classExpression } from '@/lib/common';
 import { useEffect, useMemo, useState } from 'react';
 import { TAROT_CARDS } from '@/lib/tarot/cards';
 import { randomOrientation, shuffle } from '@/lib/tarot/logic';
+import SpreadFilled from './SpreadFilled';
 
 interface CardTileProps {
     card: TarotCard;
@@ -89,6 +90,16 @@ export default function DeckPicker ({ spread, question, selectedCards, setSelect
         setSelectedCards(next);
     };
 
+    const onRemoveByPositionIndexHandler = (positionIndex: number) => {
+        const next = [...selectedCards];
+        next.splice(positionIndex, 1);
+        const relabeled = next.map((selected, index) => ({
+            ...selected,
+            positionLabel: spread.positions[index] ?? `카드 ${index + 1}`,
+        }));
+        setSelectedCards(relabeled);
+    };
+
     useEffect(() => {
         setDeck(shuffle(TAROT_CARDS));
     }, [spread, question]);
@@ -120,9 +131,10 @@ export default function DeckPicker ({ spread, question, selectedCards, setSelect
                         <CardTile key={index} pickedLabel={label} card={card} disabled={selectedCards.length >= spread.count} onClick={() => onCardClickHandler(index)} />
                         )
                     })}
-                    
                 </div>
             </div>
+
+            <SpreadFilled spread={spread} selectedCards={selectedCards} onRemoveByPositionIndex={onRemoveByPositionIndexHandler} />
         </div>
     );
 }

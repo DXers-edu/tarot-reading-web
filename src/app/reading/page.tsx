@@ -46,6 +46,12 @@ export default function Reading() {
     }, [selectedSpreadKey]);
 
     const onStepClickHandler = (step: Step) => {
+        switch (step) {
+            case 1:
+            setSelectedKey(null);
+            case 2:
+            setSelectedCards([]);
+        }
         setStep(step);
     };
 
