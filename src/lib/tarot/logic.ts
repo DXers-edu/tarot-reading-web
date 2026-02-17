@@ -1,4 +1,4 @@
-import { Orientation } from "./types";
+import { Orientation, TarotCard } from './types';
 
 export function shuffle<T>(originals: T[]): T[] {
     const shuffled = [...originals];
@@ -11,4 +11,10 @@ export function shuffle<T>(originals: T[]): T[] {
 
 export function randomOrientation(): Orientation {
     return Math.random() < 0.5 ? '정방향' : '역방향';
+}
+
+export function summarizeCard (card: TarotCard, orientation: Orientation) {
+    const keyword = card.keywords.find(keyword => keyword.type === orientation);
+    if (!keyword) return '';
+    return `${orientation} - ${keyword.keyword}`
 }
