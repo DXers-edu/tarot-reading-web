@@ -1,6 +1,6 @@
 # Next.js + LLM API를 활용한 개발부터 수익화까지
 
-## 🏁 12강 리딩 페이지 - 해석 결과 컴포넌트 생성
+## 🏁 13강 Open AI API 등록
 **소스코드**: Next.js 소스코드
 
 ---
@@ -19,6 +19,7 @@
 - typescript 5
 - eslint 9
 - lucide-react 0.564.0
+- openai 6.22.0
 
 ---
 
