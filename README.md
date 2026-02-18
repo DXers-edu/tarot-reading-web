@@ -1,6 +1,6 @@
 # Next.js + LLM API를 활용한 개발부터 수익화까지
 
-## 🏁 13강 Open AI API 등록
+## 🏁 14강 스프레드 기능 추가
 **소스코드**: Next.js 소스코드
 
 ---
@@ -20,6 +20,7 @@
 - eslint 9
 - lucide-react 0.564.0
 - openai 6.22.0
+- axios 1.13.5
 
 ---
 
