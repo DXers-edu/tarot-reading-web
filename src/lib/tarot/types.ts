@@ -53,3 +53,19 @@ export type SelectedCard = {
     orientation: Orientation;
     positionLabel: string;
 };
+
+export type AiInterpretation = {
+    cards: {
+        positionLabel: string;
+        cardSlug: string;
+        orientation: Orientation;
+        interpretation: string;
+        keyPoints: string[];
+    }[],
+    overall: {
+        summary: string;
+        insights: string[];
+        actionAdvice: string[];
+        confidence: number;
+    }
+};
