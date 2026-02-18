@@ -105,7 +105,7 @@ export default function Reading() {
                     </button>
                 </div>
                 {step === 1 && <QuestionBox question={question} onChange={onQuestionChangeHandler} onNext={onStepClickHandler} />}
-                {step === 2 && <SpreadSelector selectedKey={selectedSpreadKey} onSelect={onSpreadSelectedHandler} onNext={onStepClickHandler} />}
+                {step === 2 && <SpreadSelector selectedKey={selectedSpreadKey} question={question} onSelect={onSpreadSelectedHandler} onNext={onStepClickHandler} />}
                 {step === 3 && <DeckPicker spread={spread} question={question} selectedCards={selectedCards} setSelectedCards={onSelectedCardChangeHandler} onNext={onStepClickHandler} />}
                 {step === 4 && <ReadingResult question={question} spread={spread} selectedCards={selectedCards} />}
             </CardBody>
